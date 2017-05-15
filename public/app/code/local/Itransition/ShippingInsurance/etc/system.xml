@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <shippinginsurance translate="label" module="itransition_shippinginsurance">
+            <label>Shipping Insurance Settings</label>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <sort_order>330</sort_order>
+            <tab>sales</tab>
+            <groups>
+                <options_group translate="label">
+                    <expanded>1</expanded>
+                    <label>Options</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>1</sort_order>
+                    <fields>
+                        <enabled_field>
+                            <frontend_type>select</frontend_type>
+                            <label>Enabled</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>1</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </enabled_field>
+                    </fields>
+                </options_group>
+            </groups>
+        </shippinginsurance>
+    </sections>
+</config>

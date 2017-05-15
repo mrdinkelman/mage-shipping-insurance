@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Itransition_ShippingInsurance>
+            <version>1.0.0</version>
+        </Itransition_ShippingInsurance>
+    </modules>
+    <global>
+        <helpers>
+            <itransition_shippinginsurance>
+                <class>Itransition_ShippingInsurance_Helper</class>
+            </itransition_shippinginsurance>
+        </helpers>
+    </global>
+</config>
