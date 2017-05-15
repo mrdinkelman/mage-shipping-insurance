@@ -11,5 +11,17 @@
                 <class>Itransition_ShippingInsurance_Helper</class>
             </itransition_shippinginsurance>
         </helpers>
+        <models>
+            <itransition_shippinginsurance>
+                <class>Itransition_ShippingInsurance_Model</class>
+            </itransition_shippinginsurance>
+        </models>
     </global>
+    <default>
+        <shippinginsurance>
+            <settings_group>
+                <value_field>0</value_field>
+            </settings_group>
+        </shippinginsurance>
+    </default>
 </config>
