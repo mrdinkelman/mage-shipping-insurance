@@ -644,6 +644,8 @@
 /skin/frontend/rwd/default/images/media/homepage_callout_2@2x.jpg
 /skin/frontend/rwd/default/images/media/homepage_banner_2.jpg
 /skin/frontend/rwd/default/images/media/homepage_callout_1.jpg
+/skin/frontend/rwd/default/images/media/logo.png
+/skin/frontend/rwd/default/images/media/logo_small.png
 /skin/adminhtml/default/default/below_ie7.css
 /skin/adminhtml/default/default/oauth-simple.css
 /skin/adminhtml/default/default/reset.css
@@ -1573,3 +1575,7 @@
 /app/code/local/Mage/Core/Model/File/Uploader.php
 /app/code/local/Mage/Core/Model/Resource/Session.php
 /app/code/local/Mage/Sales/Model/Config/Ordered.php
+/var/cache/*
+/var/session/
+/media/
+/app/etc/local.xml
