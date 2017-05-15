@@ -3,6 +3,9 @@
     <modules>
         <Itransition_ShippingInsurance>
             <version>1.0.0</version>
+            <depends>
+                <Mage_Shipping />
+            </depends>
         </Itransition_ShippingInsurance>
     </modules>
     <global>
