@@ -28,6 +28,58 @@
                         </enabled_field>
                     </fields>
                 </options_group>
+                <settings_group translate="label">
+                    <label>Settings</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <sort_order>2</sort_order>
+                    <fields>
+                        <shippingmethod_field>
+                            <frontend_type>select</frontend_type>
+                            <label>Shipping method</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>1</sort_order>
+                        </shippingmethod_field>
+                        <enabled_field>
+                            <frontend_type>select</frontend_type>
+                            <label>Enabled</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>2</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                        </enabled_field>
+                        <type_field>
+                            <depends>
+                                <enabled_field>
+                                    <value>1</value>
+                                </enabled_field>
+                            </depends>
+                            <frontend_type>select</frontend_type>
+                            <label>Type</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>3</sort_order>
+                        </type_field>
+                        <value_field>
+                            <can_be_empty>0</can_be_empty>
+                            <depends>
+                                <enabled_field>
+                                    <value>1</value>
+                                </enabled_field>
+                            </depends>
+                            <label>Value</label>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <sort_order>4</sort_order>
+                        </value_field>
+                    </fields>
+                </settings_group>
             </groups>
         </shippinginsurance>
     </sections>
