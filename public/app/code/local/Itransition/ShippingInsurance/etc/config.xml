@@ -4,11 +4,16 @@
         <Itransition_ShippingInsurance>
             <version>1.0.0</version>
             <depends>
-                <Mage_Shipping />
+                <Mage_Adminhtml />
             </depends>
         </Itransition_ShippingInsurance>
     </modules>
     <global>
+        <blocks>
+            <itransition_shippinginsurance>
+                <class>Itransition_ShippingInsurance_Block</class>
+            </itransition_shippinginsurance>
+        </blocks>
         <helpers>
             <itransition_shippinginsurance>
                 <class>Itransition_ShippingInsurance_Helper</class>
@@ -20,11 +25,4 @@
             </itransition_shippinginsurance>
         </models>
     </global>
-    <default>
-        <shippinginsurance>
-            <settings_group>
-                <value_field>0</value_field>
-            </settings_group>
-        </shippinginsurance>
-    </default>
 </config>

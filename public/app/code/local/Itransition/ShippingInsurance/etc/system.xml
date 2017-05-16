@@ -9,9 +9,9 @@
             <sort_order>330</sort_order>
             <tab>sales</tab>
             <groups>
-                <options_group translate="label">
+                <options translate="label">
                     <expanded>1</expanded>
-                    <label>Options</label>
+                    <label>General settings</label>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
@@ -19,46 +19,47 @@
                     <fields>
                         <enabled_field>
                             <frontend_type>select</frontend_type>
-                            <label>Enabled</label>
+                            <label>Feature</label>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>1</sort_order>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
                         </enabled_field>
                     </fields>
-                </options_group>
-                <settings_group translate="label">
-                    <label>Settings</label>
+                </options>
+                <rates translate="label">
+                    <clone_fields>1</clone_fields>
+                    <clone_model>itransition_shippinginsurance/setting_cloned</clone_model>
+                    <label>Shipping Methods Rates</label>
                     <show_in_default>1</show_in_default>
                     <show_in_website>1</show_in_website>
                     <show_in_store>1</show_in_store>
                     <sort_order>2</sort_order>
                     <fields>
-                        <shippingmethod_field>
-                            <frontend_type>select</frontend_type>
-                            <label>Shipping method</label>
+                        <heading>
+                            <frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+                            <label>Method</label>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>1</sort_order>
-                            <source_model>itransition_shippinginsurance/setting_source_carrier</source_model>
-                        </shippingmethod_field>
-                        <enabled_field>
+                        </heading>
+                        <enabled>
                             <frontend_type>select</frontend_type>
-                            <label>Enabled</label>
+                            <frontend_model>itransition_shippinginsurance/system_config_form_field_custom</frontend_model>
+                            <label>Insurance</label>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>2</sort_order>
-                            <source_model>adminhtml/system_config_source_yesno</source_model>
-                        </enabled_field>
-                        <type_field>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                        </enabled>
+                        <type>
                             <depends>
-                                <enabled_field>
-                                    <value>1</value>
-                                </enabled_field>
+                                <enabled>1</enabled>
                             </depends>
+                            <frontend_model>itransition_shippinginsurance/system_config_form_field_custom</frontend_model>
                             <frontend_type>select</frontend_type>
                             <label>Type</label>
                             <show_in_default>1</show_in_default>
@@ -66,22 +67,21 @@
                             <show_in_store>1</show_in_store>
                             <sort_order>3</sort_order>
                             <source_model>itransition_shippinginsurance/setting_source_type</source_model>
-                        </type_field>
-                        <value_field>
+                        </type>
+                        <fee>
                             <can_be_empty>0</can_be_empty>
+                            <frontend_model>itransition_shippinginsurance/system_config_form_field_custom</frontend_model>
                             <depends>
-                                <enabled_field>
-                                    <value>1</value>
-                                </enabled_field>
+                                <enabled>1</enabled>
                             </depends>
-                            <label>Value</label>
+                            <label>Fee</label>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
                             <sort_order>4</sort_order>
-                        </value_field>
+                        </fee>
                     </fields>
-                </settings_group>
+                </rates>
             </groups>
         </shippinginsurance>
     </sections>
