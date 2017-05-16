@@ -17,28 +17,16 @@
             </itransition_shippinginsurance>
             <sales>
                 <rewrite>
-                    <order_creditmemo_totals>
-                        Itransition_ShippingInsurance_Block_Order_Creditmemo_Totals
-                    </order_creditmemo_totals>
-                    <order_invoice_totals>
-                        Itransition_ShippingInsurance_Block_Order_Invoice_Totals
-                    </order_invoice_totals>
-                    <order_totals>
-                        Itransition_ShippingInsurance_Block_Order_Totals
-                    </order_totals>
+                    <order_creditmemo_totals>Itransition_ShippingInsurance_Block_Order_Creditmemo_Totals</order_creditmemo_totals>
+                    <order_invoice_totals>Itransition_ShippingInsurance_Block_Order_Invoice_Totals</order_invoice_totals>
+                    <order_totals>Itransition_ShippingInsurance_Block_Order_Totals</order_totals>
                 </rewrite>
             </sales>
             <adminhtml>
                 <rewrite>
-                    <sales_order_totals>
-                        Itransition_ShippingInsurance_Block_System_Order_Totals
-                    </sales_order_totals>
-                    <sales_order_invoice_totals>
-                        Itransition_ShippingInsurance_Block_System_Order_Invoice_Totals
-                    </sales_order_invoice_totals>
-                    <sales_order_creditmemo_totals>
-                        Itransition_ShippingInsurance_Block_System_Order_Creditmemo_Totals
-                    </sales_order_creditmemo_totals>
+                    <sales_order_totals>Itransition_ShippingInsurance_Block_System_Order_Totals</sales_order_totals>
+                    <sales_order_invoice_totals>Itransition_ShippingInsurance_Block_System_Order_Invoice_Total</sales_order_invoice_totals>
+                    <sales_order_creditmemo_totals>Itransition_ShippingInsurance_Block_System_Order_Creditmemo_Totals</sales_order_creditmemo_totals>
                 </rewrite>
             </adminhtml>
         </blocks>
