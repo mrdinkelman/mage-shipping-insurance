@@ -5,6 +5,8 @@
             <version>1.0.0</version>
             <depends>
                 <Mage_Adminhtml />
+                <Mage_Sales />
+                <Mage_Shipping />
             </depends>
         </Itransition_ShippingInsurance>
     </modules>
@@ -13,7 +15,44 @@
             <itransition_shippinginsurance>
                 <class>Itransition_ShippingInsurance_Block</class>
             </itransition_shippinginsurance>
+            <sales>
+                <rewrite>
+                    <order_creditmemo_totals>
+                        Itransition_ShippingInsurance_Block_Order_Creditmemo_Totals
+                    </order_creditmemo_totals>
+                    <order_invoice_totals>
+                        Itransition_ShippingInsurance_Block_Order_Invoice_Totals
+                    </order_invoice_totals>
+                    <order_totals>
+                        Itransition_ShippingInsurance_Block_Order_Totals
+                    </order_totals>
+                </rewrite>
+            </sales>
+            <adminhtml>
+                <rewrite>
+                    <sales_order_totals>
+                        Itransition_ShippingInsurance_Block_System_Order_Totals
+                    </sales_order_totals>
+                    <sales_order_invoice_totals>
+                        Itransition_ShippingInsurance_Block_System_Order_Invoice_Totals
+                    </sales_order_invoice_totals>
+                    <sales_order_creditmemo_totals>
+                        Itransition_ShippingInsurance_Block_System_Order_Creditmemo_Totals
+                    </sales_order_creditmemo_totals>
+                </rewrite>
+            </adminhtml>
         </blocks>
+        <events>
+            <checkout_controller_onepage_save_shipping_method>
+                <observers>
+                    <itransition_shippinginsurance_observer>
+                        <type>singleton</type>
+                        <class>itransition_shippinginsurance/observer</class>
+                        <method>checkoutObserver</method>
+                    </itransition_shippinginsurance_observer>
+                </observers>
+            </checkout_controller_onepage_save_shipping_method>
+        </events>
         <helpers>
             <itransition_shippinginsurance>
                 <class>Itransition_ShippingInsurance_Helper</class>
@@ -22,7 +61,66 @@
         <models>
             <itransition_shippinginsurance>
                 <class>Itransition_ShippingInsurance_Model</class>
+                <resourceModel>itransition_shippinginsurance</resourceModel>
             </itransition_shippinginsurance>
         </models>
+        <resources>
+            <shippinginsurance_setup>
+                <setup>
+                    <module>Itransition_ShippingInsurance</module>
+                    <class>Mage_Sales_Model_Resource_Setup</class>
+                </setup>
+            </shippinginsurance_setup>
+        </resources>
+        <sales>
+            <quote>
+                <totals>
+                    <itransition_shipping_insurance>
+                        <class>itransition_shippinginsurance/Total_Quote</class>
+                    </itransition_shipping_insurance>
+                </totals>
+            </quote>
+            <order_invoice>
+                <totals>
+                    <shipping_insurance>
+                        <class>itransition_shippinginsurance/Total_Invoice</class>
+                    </shipping_insurance>
+                </totals>
+            </order_invoice>
+            <order_creditmemo>
+                <totals>
+                    <shipping_insurance>
+                        <class>itransition_shippinginsurance/Total_Creditmemo</class>
+                    </shipping_insurance>
+                </totals>
+            </order_creditmemo>
+        </sales>
+        <fieldsets>
+            <sales_convert_quote>
+                <shipping_insurance><to_order>*</to_order></shipping_insurance>
+                <insurance_shipping_method><to_order>*</to_order></insurance_shipping_method>
+            </sales_convert_quote>
+            <sales_convert_quote_address>
+                <shipping_insurance><to_order_address>*</to_order_address></shipping_insurance>
+                <insurance_shipping_method><to_order_address>*</to_order_address></insurance_shipping_method>
+            </sales_convert_quote_address>
+            <sales_convert_order_address>
+                <shipping_insurance><to_quote_address>*</to_quote_address></shipping_insurance>
+                <insurance_shipping_method><to_quote_address>*</to_quote_address></insurance_shipping_method>
+            </sales_convert_order_address>
+            <sales_convert_order>
+                <shipping_insurance><to_quote>*</to_quote></shipping_insurance>
+                <insurance_shipping_method><to_quote>*</to_quote></insurance_shipping_method>
+            </sales_convert_order>
+        </fieldsets>
     </global>
+    <frontend>
+        <layout>
+            <updates>
+                <itransition_shippinginsurance>
+                    <file>itransition_shipping_insurance.xml</file>
+                </itransition_shippinginsurance>
+            </updates>
+        </layout>
+    </frontend>
 </config>
