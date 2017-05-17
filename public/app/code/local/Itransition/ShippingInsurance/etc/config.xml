@@ -25,7 +25,7 @@
             <adminhtml>
                 <rewrite>
                     <sales_order_totals>Itransition_ShippingInsurance_Block_System_Order_Totals</sales_order_totals>
-                    <sales_order_invoice_totals>Itransition_ShippingInsurance_Block_System_Order_Invoice_Total</sales_order_invoice_totals>
+                    <sales_order_invoice_totals>Itransition_ShippingInsurance_Block_System_Order_Invoice_Totals</sales_order_invoice_totals>
                     <sales_order_creditmemo_totals>Itransition_ShippingInsurance_Block_System_Order_Creditmemo_Totals</sales_order_creditmemo_totals>
                 </rewrite>
             </adminhtml>
