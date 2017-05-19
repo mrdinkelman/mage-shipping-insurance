@@ -1,7 +1,12 @@
 <layout>
     <checkout_onepage_index>
         <reference name="checkout.onepage.shipping_method">
-            <block type="itransition_shippinginsurance/checkoutInsurance" name="additional" template="shipping/shipping_insurance.phtml"/>
+            <block
+                    type="itransition_shippinginsurance/checkoutInsurance"
+                    name="itransition_shippinginsurance.shipping_insurance"
+                    as="shipping_insurance"
+                    template="checkout/onepage/shipping_insurance.phtml"
+            />
         </reference>
     </checkout_onepage_index>
 </layout>
