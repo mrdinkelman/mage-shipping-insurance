@@ -19,7 +19,7 @@ class Itransition_ShippingInsurance_Model_Total_Quote extends Mage_Sales_Model_Q
                 return $this;
             }
 
-            $costInsurance = $this->getInsuranceCost($address);
+            $costInsurance = $this->_getInsuranceCost($address);
             $this->setGrandTotalWithInsuranceCost($address, $costInsurance);
         }
     }
@@ -39,7 +39,7 @@ class Itransition_ShippingInsurance_Model_Total_Quote extends Mage_Sales_Model_Q
         return $this;
     }
 
-    private function getInsuranceCost(Mage_Sales_Model_Quote_Address $address)
+    protected function _getInsuranceCost(Mage_Sales_Model_Quote_Address $address)
     {
         $costInsurance  = 0;
         $subTotal       = (float) $address->getSubtotal();

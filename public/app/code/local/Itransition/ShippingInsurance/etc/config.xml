@@ -36,7 +36,7 @@
                     <itransition_shippinginsurance_observer>
                         <type>singleton</type>
                         <class>itransition_shippinginsurance/observer</class>
-                        <method>checkoutObserver</method>
+                        <method>checkoutControllerOnepageSaveShippingMethod</method>
                     </itransition_shippinginsurance_observer>
                 </observers>
             </checkout_controller_onepage_save_shipping_method>

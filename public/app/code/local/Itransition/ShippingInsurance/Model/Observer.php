@@ -2,7 +2,7 @@
 
 class Itransition_ShippingInsurance_Model_Observer
 {
-    public function checkoutObserver(Varien_Event_Observer $observer)
+    public function checkoutControllerOnepageSaveShippingMethod(Varien_Event_Observer $observer)
     {
         $isModuleEnabled = Mage::getStoreConfig('shippinginsurance/settings/enabled');
 
