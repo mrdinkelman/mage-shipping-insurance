@@ -2,20 +2,21 @@
 
 class Itransition_ShippingInsurance_Block_CheckoutInsurance extends Mage_Checkout_Block_Onepage_Abstract
 {
-    public function isModuleEnabled()
+    public function isFeatureEnabled()
     {
-        return Mage::getStoreConfig('shippinginsurance/settings/enabled');
-    }
+        /** @var $helper Itransition_ShippingInsurance_Helper_Data $helper */
+        $helper = Mage::helper('itransition_shippinginsurance');
 
-    public function hasInsurances()
-    {
-        return 0 < count($this->listInsuranceCosts());
+        return $helper->isFeatureEnabled();
     }
 
     public function listInsuranceCosts()
     {
         /** @var Mage_Sales_Model_Quote $quote */
-        $quote = $this->getQuote();
+        $quote  = $this->getQuote();
+
+        /** @var $helper Itransition_ShippingInsurance_Helper_Data $helper */
+        $helper = Mage::helper('itransition_shippinginsurance');
 
         /** @var Mage_Sales_Model_Quote_Address $shippingAddress */
         $shippingAddress = $quote->getShippingAddress();
@@ -31,40 +32,14 @@ class Itransition_ShippingInsurance_Block_CheckoutInsurance extends Mage_Checkou
                 continue;
             }
 
-            if (!$this->_isInsuranceEnabled($carrierCode)) {
+            if (!$helper->isCarrierCodeAllowed($carrierCode)) {
                 continue;
             }
 
-            $costInsurance        = $this->_calculateInsuranceCost($carrierCode);
+            $costInsurance        = $helper->calculateInsuranceCost($carrierCode, $this->getQuote()->getSubtotal());
             $costs[$carrierTitle] = Mage::helper('core')->currency($costInsurance, true, false);
         }
 
         return $costs;
-    }
-
-    protected function _isInsuranceEnabled($code)
-    {
-        return Mage::getStoreConfig('shippinginsurance/rates/field_' . $code. '_enabled');
-    }
-
-    protected function _calculateInsuranceCost($code)
-    {
-        $costInsurance = 0;
-        $subTotal      = $this->getQuote()->getSubtotal();
-
-        $type = Mage::getStoreConfig('shippinginsurance/rates/field_' . $code . '_type');
-        $fee  = Mage::getStoreConfig('shippinginsurance/rates/field_' . $code . '_fee');
-
-        switch ($type) {
-            case Itransition_ShippingInsurance_Model_Setting_Source_Type::TYPE_FIXED_ID: {
-                $costInsurance = round($fee, 2, PHP_ROUND_HALF_UP);
-                break;
-            }
-            case Itransition_ShippingInsurance_Model_Setting_Source_Type::TYPE_ORDER_PERCENTAGE_ID: {
-                $costInsurance = round($subTotal * ($fee / 100), 2, PHP_ROUND_HALF_UP);
-            }
-        }
-
-        return $costInsurance;
     }
 }

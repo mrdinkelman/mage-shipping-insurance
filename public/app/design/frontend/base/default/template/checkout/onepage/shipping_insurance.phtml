@@ -4,7 +4,7 @@ $block = $this;
 ?>
 
 <div class="itransition-shipping-insurance">
-    <?php if ($block->isModuleEnabled() && $block->hasInsurances()): ?>
+    <?php if ($block->isFeatureEnabled() && 0 < $costs = $block->listInsuranceCosts()): ?>
         <h3><?php echo $this->__('Do you want to add insurance for Shipping Method?'); ?></h3>
         <p class="control">
             <input type="checkbox" id="shippinginsurance_enabled" name="shippinginsurance_enabled" value="1">
@@ -19,7 +19,7 @@ $block = $this;
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($block->listInsuranceCosts() as $provider => $cost): ?>
+                <?php foreach ($costs as $provider => $cost): ?>
                     <tr>
                         <td><?php echo $provider; ?></td>
                         <td><?php echo $cost; ?></td>
