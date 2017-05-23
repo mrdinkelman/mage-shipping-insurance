@@ -20,21 +20,17 @@ class Itransition_ShippingInsurance_Block_CheckoutInsurance extends Mage_Checkou
 
         /** @var Mage_Sales_Model_Quote_Address $shippingAddress */
         $shippingAddress = $quote->getShippingAddress();
-        $rates           = $shippingAddress->getShippingRatesCollection();
+        $rates           = $shippingAddress->collectShippingRates()->getGroupedAllShippingRates();
         $costs           = array();
 
-        /** @var Mage_Sales_Model_Quote_Address_Rate $rate */
-        foreach ($rates as $rate) {
-            $carrierCode  = $rate->getCarrier();
-            $carrierTitle = $rate->getCarrierTitle();
-
-            if (isset($costs[$carrierTitle])) {
+        foreach ($rates as $code => $rate) {
+            if (!$helper->isCarrierCodeAllowed($code)) {
                 continue;
             }
 
-            if (!$helper->isCarrierCodeAllowed($carrierCode)) {
-                continue;
-            }
+            $carrier = array_shift($rate);
+            $carrierCode  = $carrier->getCarrier();
+            $carrierTitle = $carrier->getCarrierTitle();
 
             $costInsurance        = $helper->calculateInsuranceCost($carrierCode, $this->getQuote()->getSubtotal());
             $costs[$carrierTitle] = Mage::helper('core')->currency($costInsurance, true, false);
