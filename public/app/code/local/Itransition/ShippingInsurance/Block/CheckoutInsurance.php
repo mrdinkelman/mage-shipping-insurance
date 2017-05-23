@@ -23,15 +23,32 @@ class Itransition_ShippingInsurance_Block_CheckoutInsurance extends Mage_Checkou
         $rates           = $shippingAddress->collectShippingRates()->getGroupedAllShippingRates();
         $costs           = array();
 
-        foreach ($rates as $code => $rate) {
-            if (!$helper->isCarrierCodeAllowed($code)) {
+        if ($rates) {
+            foreach ($rates as $code => $rate) {
+                if (!$helper->isCarrierCodeAllowed($code)) {
+                    continue;
+                }
+
+                $carrier = array_shift($rate);
+                $carrierCode  = $carrier->getCarrier();
+                $carrierTitle = $this->__($carrier->getCarrierTitle());
+
+                $costInsurance        = $helper->calculateInsuranceCost($carrierCode, $this->getQuote()->getSubtotal());
+                $costs[$carrierTitle] = Mage::helper('core')->currency($costInsurance, true, false);
+            }
+
+            return $costs;
+        }
+
+        // handle case for guest users without any exists shipping addresses
+        $carriers = Mage::getSingleton('shipping/config')->getActiveCarriers();
+
+        foreach ($carriers as $carrierCode => $carrierModel) {
+            if (!$helper->isCarrierCodeAllowed($carrierCode)) {
                 continue;
             }
 
-            $carrier = array_shift($rate);
-            $carrierCode  = $carrier->getCarrier();
-            $carrierTitle = $carrier->getCarrierTitle();
-
+            $carrierTitle         = $this->__(Mage::getStoreConfig('carriers/'.$carrierCode.'/title'));
             $costInsurance        = $helper->calculateInsuranceCost($carrierCode, $this->getQuote()->getSubtotal());
             $costs[$carrierTitle] = Mage::helper('core')->currency($costInsurance, true, false);
         }
