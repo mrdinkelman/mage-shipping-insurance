@@ -4,11 +4,13 @@ class Itransition_ShippingInsurance_Model_Total_Creditmemo extends Mage_Sales_Mo
 {
     public function collect(Mage_Sales_Model_Order_Creditmemo $creditmemo)
     {
-        $order           = $creditmemo->getOrder();
-        $costInsurance   = $order->getShippingInsurance();
-        $isModuleEnabled = Mage::getStoreConfig('shippinginsurance/settings/enabled');
+        /** @var $helper Itransition_ShippingInsurance_Helper_Data $helper */
+        $helper           = Mage::helper('itransition_shippinginsurance');
+        $isFeatureEnabled = $helper->isFeatureEnabled();
+        $order            = $creditmemo->getOrder();
+        $costInsurance    = $order->getShippingInsurance();
 
-        if ($isModuleEnabled && $order->getInsuranceShippingMethod()) {
+        if ($isFeatureEnabled && $order->getInsuranceShippingMethod()) {
             $creditmemo->setGrandTotal($creditmemo->getGrandTotal() + $costInsurance);
             $creditmemo->setBaseGrandTotal($creditmemo->getBaseGrandTotal() + $costInsurance);
         }
