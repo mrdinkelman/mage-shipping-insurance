@@ -1,10 +1,11 @@
 <?php
 /** @var $block Itransition_ShippingInsurance_Block_CheckoutInsurance */
 $block = $this;
+$costs = $block->listInsuranceCosts();
 ?>
 
 <div class="itransition-shipping-insurance">
-    <?php if ($block->isFeatureEnabled() && 0 < $costs = $block->listInsuranceCosts()): ?>
+    <?php if ($block->isFeatureEnabled() && 0 < count($costs)): ?>
         <h3><?php echo $this->__('Do you want to add insurance for Shipping Method?'); ?></h3>
         <p class="control">
             <input type="checkbox" id="shippinginsurance_enabled" name="shippinginsurance_enabled" value="1">
