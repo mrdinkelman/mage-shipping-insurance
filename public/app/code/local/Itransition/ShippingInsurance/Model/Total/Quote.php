@@ -6,8 +6,6 @@ class Itransition_ShippingInsurance_Model_Total_Quote extends Mage_Sales_Model_Q
 
     public function collect(Mage_Sales_Model_Quote_Address $address)
     {
-        parent::collect($address);
-
         /** @var $helper Itransition_ShippingInsurance_Helper_Data */
         $helper = Mage::helper('itransition_shippinginsurance');
 
@@ -18,20 +16,17 @@ class Itransition_ShippingInsurance_Model_Total_Quote extends Mage_Sales_Model_Q
                 return $this;
             }
 
-            if ($address->getInsuranceShippingMethod()) {
-                $costInsurance = $helper->calculateInsuranceCost(
-                    $address->getInsuranceShippingMethod(),
-                    $address->getSubtotal()
-                );
-
-                $address->setShippingInsurance($costInsurance);
+            if ($address->getInsuranceShippingMethod() && $address->getShippingInsurance()) {
                 $address->setGrandTotal($address->getGrandTotal() + $address->getShippingInsurance());
                 $address->setBaseGrandTotal($address->getBaseGrandTotal() + $address->getShippingInsurance());
 
                 $quote = $address->getQuote();
-                $quote->setShippingInsurance($costInsurance);
+                $quote->setGrandTotal($quote->getGrandTotal() + $quote->getShippingInsurance());
+                $quote->setBaseGrandTotal($quote->getBaseGrandTotal() + $quote->getShippingInsurance());
             }
         }
+
+        return $this;
     }
 
     public function fetch(Mage_Sales_Model_Quote_Address $address)
@@ -49,6 +44,7 @@ class Itransition_ShippingInsurance_Model_Total_Quote extends Mage_Sales_Model_Q
                 ]
             );
         }
+
         return $this;
     }
 }
